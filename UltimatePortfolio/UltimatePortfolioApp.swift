@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct UltimatePortfolioApp: App {
-    @State var dataController = DataController()
+    @StateObject var dataController = DataController()
     var body: some Scene {
         WindowGroup {
             NavigationSplitView {
