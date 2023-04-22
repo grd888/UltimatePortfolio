@@ -18,6 +18,7 @@
 		4D2ABFB429A2698300A7AF27 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2ABFB329A2698300A7AF27 /* Filter.swift */; };
 		4D88F6EC29A3A56D000280A9 /* Issue+CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88F6EB29A3A56D000280A9 /* Issue+CoreDataHelpers.swift */; };
 		4D88F6EE29A3A6F8000280A9 /* Tag+CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88F6ED29A3A6F8000280A9 /* Tag+CoreDataHelpers.swift */; };
+		4DC22E0829BCA871006F0FDB /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC22E0729BCA871006F0FDB /* IssueRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		4D2ABFB329A2698300A7AF27 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		4D88F6EB29A3A56D000280A9 /* Issue+CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue+CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		4D88F6ED29A3A6F8000280A9 /* Tag+CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		4DC22E0729BCA871006F0FDB /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				4D2ABF9A29A1E29B00A7AF27 /* UltimatePortfolioApp.swift */,
 				4D2ABFAF29A267C800A7AF27 /* SidebarView.swift */,
 				4D2ABF9C29A1E29B00A7AF27 /* ContentView.swift */,
+				4DC22E0729BCA871006F0FDB /* IssueRow.swift */,
 				4D2ABFB129A267E900A7AF27 /* DetailView.swift */,
 				4D2ABFB329A2698300A7AF27 /* Filter.swift */,
 				4D88F6EB29A3A56D000280A9 /* Issue+CoreDataHelpers.swift */,
@@ -170,6 +173,7 @@
 				4D2ABFB029A267C800A7AF27 /* SidebarView.swift in Sources */,
 				4D2ABF9D29A1E29B00A7AF27 /* ContentView.swift in Sources */,
 				4D2ABF9B29A1E29B00A7AF27 /* UltimatePortfolioApp.swift in Sources */,
+				4DC22E0829BCA871006F0FDB /* IssueRow.swift in Sources */,
 				4D88F6EE29A3A6F8000280A9 /* Tag+CoreDataHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
