@@ -8,9 +8,15 @@
 import CoreData
 
 class DataController: ObservableObject {
+    let container: NSPersistentCloudKitContainer
+
     @Published var selectedFilter: Filter? = Filter.all
     
-    let container: NSPersistentCloudKitContainer
+    static var preview: DataController = {
+        let dataController = DataController(inMemory: true)
+        dataController.createSampleData()
+        return dataController
+    }()
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
@@ -21,20 +27,16 @@ class DataController: ObservableObject {
 
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+
         container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
-        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanged(_:))
-        container.loadPersistentStores { NSPersistentStoreDescription, error in
+        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanged)
+
+        container.loadPersistentStores { storeDescription, error in
             if let error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
         }
     }
-
-    static var preview: DataController = {
-        let dataController = DataController(inMemory: true)
-        dataController.createSampleData()
-        return dataController
-    }()
 
     func remoteStoreChanged(_ notification: Notification) {
         objectWillChange.send()
@@ -50,9 +52,9 @@ class DataController: ObservableObject {
 
             for j in 1...10 {
                 let issue = Issue(context: viewContext)
-                issue.title = "Issue \(j)"
+                issue.title = "Issue \(i)-\(j)"
                 issue.content = "Description goes here"
-                issue.creationDate = Date.now
+                issue.creationDate = .now
                 issue.completed = Bool.random()
                 issue.priority = Int16.random(in: 0...2)
                 tag.addToIssues(issue)
@@ -74,16 +76,6 @@ class DataController: ObservableObject {
         save()
     }
 
-    func deleteAll() {
-        let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
-        delete(request1)
-
-        let request2: NSFetchRequest<NSFetchRequestResult> = Issue.fetchRequest()
-        delete(request2)
-
-        save()
-    }
-
     private func delete(_ fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         batchDeleteRequest.resultType = .resultTypeObjectIDs
@@ -92,5 +84,15 @@ class DataController: ObservableObject {
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
             NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [container.viewContext])
         }
+    }
+
+    func deleteAll() {
+        let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
+        delete(request1)
+
+        let request2: NSFetchRequest<NSFetchRequestResult> = Issue.fetchRequest()
+        delete(request2)
+
+        save()
     }
 }

@@ -41,7 +41,6 @@ struct IssueRow: View {
                 }
                 .foregroundStyle(.secondary)
             }
-
         }
     }
 }

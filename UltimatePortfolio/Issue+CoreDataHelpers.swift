@@ -19,11 +19,11 @@ extension Issue {
     }
 
     var issueCreationDate: Date {
-        creationDate ?? Date.now
+        creationDate ?? .now
     }
 
     var issueModificationDate: Date {
-        modificationDate ?? Date.now
+        modificationDate ?? .now
     }
 
     var issueTags: [Tag] {
